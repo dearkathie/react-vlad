@@ -1,18 +1,14 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Author from './Author';
 import Message from './Message';
 
 class MessageList extends Component {
   render() {
-    var messageNodes = this.props.data.map(function(data) {
+    const messageNodes = this.props.data.map(function (data) {
       return (
         <div key={data.update_id}>
-          <Author>
-            {data.message.from}
-          </Author>
-          <Message>
-            {data.message.text}
-          </Message>
+          <Author first_name={data.message.from.first_name} last_name={data.message.from.last_name} />
+          <Message text={data.message.text} />
         </div>
       );
     });

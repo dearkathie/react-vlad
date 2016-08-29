@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './Message.css';
 
-class Message extends Component{
+class Message extends Component {
   render() {
     return (
      <div>
@@ -9,7 +9,7 @@ class Message extends Component{
           Message:
         </div>
         <div className="text">
-          {this.props.children}
+          {this.props.text}
         </div>
       </div>
     );

@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './Author.css';
 
-class Author extends Component{
+class Author extends Component {
   render() {
     return (
       <div>
@@ -9,7 +9,7 @@ class Author extends Component{
           From:
         </div>
         <div className="name">
-          {this.props.children.first_name + " " + this.props.children.last_name}
+          {this.props.first_name + ' ' + this.props.last_name}
         </div>
       </div>
     );
