@@ -1,19 +1,19 @@
-import React, { Component } from 'react';
+import React, { PropTypes } from 'react';
 import './Message.css';
 
-class Message extends Component {
-  render() {
-    return (
-      <div>
-        <div className="message">
-          Message:
-        </div>
-        <div className="text">
-          {this.props.text}
-        </div>
-      </div>
-    );
-  }
-}
+const Message = (props) => (
+  <div>
+    <div className="message">
+      Message:
+    </div>
+    <div className="text">
+      {props.text}
+    </div>
+  </div>
+);
+
+Message.propTypes = {
+  text: PropTypes.string,
+};
 
 export default Message;

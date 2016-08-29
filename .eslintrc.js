@@ -4,17 +4,15 @@ module.exports = {
         "react",
         "jsx-a11y",
         "import"
-    ]
-};
-
-{
+    ],
     "rules": {
         "react/jsx-filename-extension": [
             1,
-            "extensions": [".js", ".jsx"]
+            { "extensions": [".js", ".jsx"] }
         ],
         "prop-types": [
             0,
-            { ignore: ["first_name", "last_name", "pollInterval", "text", "data", "data.map"] }
+            { "ignore": ["first_name", "last_name", "pollInterval", "text", "data", "data.map"]}
         ]
-}
+    }
+};
