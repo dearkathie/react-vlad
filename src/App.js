@@ -10,30 +10,25 @@ class App extends Component {
       data: [],
     };
   }
-  loadMessagesFromServer() {
-    const _this = this;
-    fetch(this.props.url)
-            .then(
-              function (response) {
-                response.json().then(function (data) {
-                  _this.setState({ data: data.result });
-                });
-              }
-            )
-            .catch(function (err) {
-              console.log('Fetch Error', err);
-            });
-  }
   componentDidMount() {
     this.loadMessagesFromServer();
     setInterval(this.loadMessagesFromServer.bind(this), this.props.pollInterval);
+  }
+  loadMessagesFromServer() {
+    fetch(this.props.url)
+            .then((response) => {
+              response.json().then((data) => {
+                this.setState({ data: data.result });
+              });
+            }
+            );
   }
 
   render() {
     return (
       <div className="container">
-      <h1>SPBTV Bot</h1>
-      <MessageList data={this.state.data} />
+        <h1>SPBTV Bot</h1>
+        <MessageList data={this.state.data} />
       </div>
     );
   }

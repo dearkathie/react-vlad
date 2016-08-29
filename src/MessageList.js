@@ -4,7 +4,7 @@ import Message from './Message';
 
 class MessageList extends Component {
   render() {
-    const messageNodes = this.props.data.map(function (data) {
+    const messageNodes = this.props.data.map((data) => {
       return (
         <div key={data.update_id}>
           <Author first_name={data.message.from.first_name} last_name={data.message.from.last_name} />

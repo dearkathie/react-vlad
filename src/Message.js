@@ -4,7 +4,7 @@ import './Message.css';
 class Message extends Component {
   render() {
     return (
-     <div>
+      <div>
         <div className="message">
           Message:
         </div>
