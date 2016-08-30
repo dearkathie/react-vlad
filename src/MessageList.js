@@ -1,25 +1,25 @@
-import React, { Component } from 'react';
+import React, { PropTypes } from 'react';
 import Author from './Author';
 import Message from './Message';
 
-class MessageList extends Component {
-  render() {
-    const messageNodes = this.props.data.map((data) => {
-      return (
-        <div key={data.update_id}>
-          <Author first_name={data.message.from.first_name} last_name={data.message.from.last_name} />
-          <Message text={data.message.text} />
-        </div>
-      );
-    });
-    return (
-      <div>
-        <div className="MessageList">
-          {messageNodes}
-        </div>
-      </div>
-    );
-  }
-}
+const MessageList = (props) => (
+  <div className="MessageList">
+      {
+        props.data.reverse().map((data) =>
+          <div key={data.update_id}>
+            <Author
+              first_name={data.message.from.first_name}
+              last_name={data.message.from.last_name}
+            />
+            <Message text={data.message.text} />
+          </div>
+      )
+    }
+  </div>
+  );
+
+MessageList.propTypes = {
+  data: PropTypes.array,
+};
 
 export default MessageList;

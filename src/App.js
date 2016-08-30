@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+/* global fetch */
+import React, { Component, PropTypes } from 'react';
 import './App.css';
 import MessageList from './MessageList';
 
@@ -33,5 +34,10 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  pollInterval: PropTypes.number,
+  url: PropTypes.string,
+};
 
 export default App;

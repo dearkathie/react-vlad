@@ -1,19 +1,19 @@
-import React, { Component } from 'react';
+import React, { PropTypes } from 'react';
 import './Author.css';
 
-class Author extends Component {
-  render() {
-    return (
-      <div>
-        <div className="from">
-          From:
-        </div>
-        <div className="name">
-          {this.props.first_name + ' ' + this.props.last_name}
-        </div>
-      </div>
-    );
-  }
-}
+const Author = (props) => (
+  <div>
+    <div className="from">
+      From:
+    </div>
+    <div className="name">
+      {`${props.first_name} ${props.last_name}`}
+    </div>
+  </div>
+);
+Author.propTypes = {
+  first_name: PropTypes.string,
+  last_name: PropTypes.string,
+};
 
 export default Author;
