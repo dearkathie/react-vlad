@@ -35,7 +35,7 @@ class App extends Component {
       response.json().then((data) => {
         for (let i = 0; i < data.result.length; i++) {
           this.state.resultLength = data.result[data.result.length - 1];
-          const updatedMessages = this.state.data.concat(data.result);
+          const updatedMessages = this.state.data.concat(data.result).reverse();
           this.setState({ data: updatedMessages });
         }
         if (this.state.resultLength !== undefined) {

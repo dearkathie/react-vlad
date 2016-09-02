@@ -5,7 +5,7 @@ import Message from './Message';
 const MessageList = (props) => (
   <div className="MessageList">
       {
-        props.data.reverse().map((data) =>
+        props.data.map((data) =>
           <div key={data.update_id}>
             <Author
               first_name={data.message.from.first_name}
