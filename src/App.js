@@ -3,16 +3,15 @@ import React, { Component, PropTypes } from 'react';
 import './App.css';
 import MessageList from './MessageList';
 
-let getUrlWithOffset;
-let resultLength;
-let offset = null;
-
 class App extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
       data: [],
+      getUrlWithOffset: this.props.url,
+      resultLength: null,
+      offset: null,
     };
   }
 
@@ -22,26 +21,26 @@ class App extends Component {
   }
 
   createURL() {
-    if (offset === null) {
-      getUrlWithOffset = this.props.url;
+    if (this.state.offset === null) {
+      this.state.getUrlWithOffset = this.props.url;
     } else {
-      getUrlWithOffset = `${this.props.url}?offset=${offset}`;
+      this.state.getUrlWithOffset = `${this.props.url}?offset=${this.state.offset}`;
     }
   }
 
   loadMessagesFromServer() {
     this.createURL();
-    fetch(getUrlWithOffset)
+    fetch(this.state.getUrlWithOffset)
     .then((response) => {
       response.json().then((data) => {
         for (let i = 0; i < data.result.length; i++) {
-          resultLength = data.result[data.result.length - 1];
+          this.state.resultLength = data.result[data.result.length - 1];
+          const updatedMessages = this.state.data.concat(data.result);
+          this.setState({ data: updatedMessages });
         }
-        if (resultLength !== undefined) {
-          offset = resultLength.update_id + 1;
+        if (this.state.resultLength !== undefined) {
+          this.state.offset = this.state.resultLength.update_id + 1;
         }
-        const updatedMessages = this.state.data.concat(data.result);
-        this.setState({ data: updatedMessages });
       });
     }
             );
