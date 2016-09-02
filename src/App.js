@@ -35,13 +35,13 @@ class App extends Component {
     .then((response) => {
       response.json().then((data) => {
         for (let i = 0; i < data.result.length; i++) {
-          const updatedMessages = this.state.data.concat(data.result);
-          this.setState({ data: updatedMessages });
           resultLength = data.result[data.result.length - 1];
         }
         if (resultLength !== undefined) {
           offset = resultLength.update_id + 1;
         }
+        const updatedMessages = this.state.data.concat(data.result);
+        this.setState({ data: updatedMessages });
       });
     }
             );
