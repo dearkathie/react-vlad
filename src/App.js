@@ -3,6 +3,10 @@ import React, { Component, PropTypes } from 'react';
 import './App.css';
 import MessageList from './MessageList';
 
+let getUrlWithOffset;
+let resultLength;
+let offset = null;
+
 class App extends Component {
 
   constructor(props) {
@@ -11,17 +15,35 @@ class App extends Component {
       data: [],
     };
   }
+
   componentDidMount() {
     this.loadMessagesFromServer();
     setInterval(this.loadMessagesFromServer.bind(this), this.props.pollInterval);
   }
+
+  createURL() {
+    if (offset === null) {
+      getUrlWithOffset = this.props.url;
+    } else {
+      getUrlWithOffset = `${this.props.url}?offset=${offset}`;
+    }
+  }
+
   loadMessagesFromServer() {
-    fetch(this.props.url)
-            .then((response) => {
-              response.json().then((data) => {
-                this.setState({ data: data.result });
-              });
-            }
+    this.createURL();
+    fetch(getUrlWithOffset)
+    .then((response) => {
+      response.json().then((data) => {
+        for (let i = 0; i < data.result.length; i++) {
+          const updatedMessages = this.state.data.concat(data.result);
+          this.setState({ data: updatedMessages });
+          resultLength = data.result[data.result.length - 1];
+        }
+        if (resultLength !== undefined) {
+          offset = resultLength.update_id + 1;
+        }
+      });
+    }
             );
   }
 
