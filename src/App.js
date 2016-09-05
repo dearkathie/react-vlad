@@ -33,11 +33,9 @@ class App extends Component {
     fetch(this.state.getUrlWithOffset)
     .then((response) => {
       response.json().then((data) => {
-        for (let i = 0; i < data.result.length; i++) {
-          this.state.resultLength = data.result[data.result.length - 1];
-          const updatedMessages = this.state.data.concat(data.result).reverse();
-          this.setState({ data: updatedMessages });
-        }
+        this.state.resultLength = data.result[data.result.length - 1];
+        const updatedMessages = data.result.concat(this.state.data);
+        this.setState({ data: updatedMessages });
         if (this.state.resultLength !== undefined) {
           this.state.offset = this.state.resultLength.update_id + 1;
         }
